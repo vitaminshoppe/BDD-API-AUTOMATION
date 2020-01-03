@@ -1,11 +1,6 @@
 {
-    "specName": "User Registration",
     "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/register",
-    "isThirdParty": false,
     "method": "post",
-    "authRequired": false,
-    "isDependent": false,
-    "dependentURLs": [],
     "updateRequestBody": true,
     "updateRequestBodyFields": [
         "email",
@@ -15,7 +10,6 @@
     "updateQueryFields": [
         "query"
     ],
-    "isRegistration": true,
     "registrationDetails": {
         "email": "autoapi{random}@yopmail.com",
         "password": "password"
