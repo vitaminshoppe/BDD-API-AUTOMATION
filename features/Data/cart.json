@@ -4,9 +4,6 @@
     "updateRequestBodyFields": [
         "catalogRefIds"
     ],
-    "updateResponseBodyFields": [
-        "estimatedCartSummaryPrice"
-    ],
     "requestBody": {
         "quantity": "1",
         "catalogRefIds": "{random}",

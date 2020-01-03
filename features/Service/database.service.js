@@ -7,7 +7,7 @@ oracledb.outFormat = oracledb.OBJECT;
 exports.fetchData = function (config) {
 	return new Promise((resolve, reject) => {
 		// Get a non-pooled connection
-		oracledb.getConnection(dbConfig.perf.databaseCreds,
+		oracledb.getConnection(dbConfig.qa1.databaseCreds,
 			function (err, connection) {
 				if (err) {
 					logger.error(err);

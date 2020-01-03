@@ -5,28 +5,6 @@ const Stream = require('stream');
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const isFile = source => fs.lstatSync(source).isFile();
-/**
- * [getFilesList returns an object of exisiting folder and its files]
- * @param  {String} dir [path to dir]
- * @return {Object}     JS object of directory contents
- */
-/**
- * sample output
- * {
- * 		root: [
- * 			"fileName1",
- * 			"fileName2"
- * 			],
- * 		ca: [
- * 			"fileName1",
- * 			"fileName2"
- * 			],
- * 		node: [
- * 			"fileName1",
- * 			"fileName2"
- * 			]
- * }
- */
 
 var getFolderContents = function(dir){
 	var contentObj= {};
