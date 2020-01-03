@@ -1,0 +1,21 @@
+{
+    "url": "/rest/model/vitaminshoppe/ca/actor/CartModifierActor/addItemToOrder",
+    "method": "post",
+    "isThirdParty": false,
+    "updateRequestBodyFields": [
+        "catalogRefIds"
+    ],
+    "updateResponseBodyFields": [
+        "estimatedCartSummaryPrice"
+    ],
+    "requestBody": {
+        "quantity": "1",
+        "catalogRefIds": "{random}",
+        "autoDeliveryFreq": "28",
+        "deliveryMethod": "DTC",
+        "autoDelivery": false,
+        "source": "CA",
+        "page": "cart",
+        "validateShippingMethods": true
+    }
+}

@@ -1,0 +1,1 @@
+exports.BASE_URL = "https://qa1.vitaminshoppe.com"

@@ -1,0 +1,39 @@
+{
+    "specName": "User Registration",
+    "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/register",
+    "isThirdParty": false,
+    "method": "post",
+    "authRequired": false,
+    "isDependent": false,
+    "dependentURLs": [],
+    "updateRequestBody": true,
+    "updateRequestBodyFields": [
+        "email",
+        "firstName",
+        "lastName"
+    ],
+    "updateQueryFields": [
+        "query"
+    ],
+    "isRegistration": true,
+    "registrationDetails": {
+        "email": "autoapi{random}@yopmail.com",
+        "password": "password"
+    },
+    "requestBody": {
+        "firstName": "{random}",
+        "lastName": "{random}",
+        "email": "autoapi{random}@yopmail.com",
+        "zipCode": "07013",
+        "phoneNumberType": "HOME",
+        "phoneNumber": "8780001136",
+        "password": "password",
+        "confirmPassword": "password"
+    },
+    "verification": {
+        "dbVerification": {
+            "isEnabled": true,
+            "query": "select * from dps_user where  LOGIN = 'autoapi{random}@yopmail.com'"
+        }
+    }
+}

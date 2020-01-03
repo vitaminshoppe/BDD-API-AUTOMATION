@@ -1,0 +1,378 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Register User",
+    "line": 1,
+    "id": "register-user",
+    "tags": [],
+    "uri": "features\\Feature\\AccountFeature\\CreateUser.feature",
+    "elements": [
+      {
+        "id": "register-user;create-new-user-scenario",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Create new user scenario",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Backup\\cucumber-js-rest-api\\node_modules\\cucumber\\lib\\support_code_library_builder\\index.js:62"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 3,
+            "name": "I call register user api with firstname as \"Pratik\" and lastName as \"Patil\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1232000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "firstname and lastName in response should be \"Pratik\" and \"Patil\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:91"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3000000
+            },
+            "embeddings": [
+              {
+                "data": "{\"registerResponse\":{\"lastName\":\"Patil\",\"profileImagePath\":\"\",\"profileId\":\"u987542144\",\"thread1\":null,\"customerNumber\":\"827219168\",\"defaultStore\":\"\",\"emailOptInFlag\":\"0\",\"zipCode\":\"07013\",\"defaultPaymentAvailable\":false,\"thread2\":\"182\",\"firstName\":\"Pratik\",\"STATUS\":\"SUCCESS_CREATE_CUSTOMER\"}}",
+                "mime_type": "application/json"
+              }
+            ]
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "status flag in response should be \"SUCCESS_CREATE_CUSTOMER\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:100"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "firstname and lastName in database should match with response",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:106"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2899000000
+            },
+            "embeddings": [
+              {
+                "data": "[{\"ID\":\"u987542144\",\"LOGIN\":\"autoapi1578045208953@yopmail.com\",\"AUTO_LOGIN\":1,\"PASSWORD\":\"5f4dcc3b5aa765d61d8327deb882cf99\",\"MEMBER\":0,\"FIRST_NAME\":\"Pratik\",\"MIDDLE_NAME\":null,\"LAST_NAME\":\"Patil\",\"USER_TYPE\":0,\"LOCALE\":null,\"LASTACTIVITY_DATE\":\"2020-01-02T23:23:30.192Z\",\"REGISTRATION_DATE\":\"2020-01-02T23:23:29.707Z\",\"EMAIL\":\"autoapi1578045208953@yopmail.com\",\"EMAIL_STATUS\":0,\"RECEIVE_EMAIL\":1,\"LAST_EMAILED\":null,\"GENDER\":0,\"DATE_OF_BIRTH\":null,\"SECURITYSTATUS\":null,\"DESCRIPTION\":null,\"LASTPWDUPDATE\":\"2020-01-02T23:23:29.709Z\",\"GENERATEDPWD\":0,\"PASSWORD_SALT\":null,\"REALM_ID\":null}]",
+                "mime_type": "application/json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Register Duplicate User",
+    "line": 1,
+    "id": "register-duplicate-user",
+    "tags": [],
+    "uri": "features\\Feature\\AccountFeature\\RegisterDuplicateUser.feature",
+    "elements": [
+      {
+        "id": "register-duplicate-user;register-duplicate-user-scenario",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Register Duplicate User scenario",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Backup\\cucumber-js-rest-api\\node_modules\\cucumber\\lib\\support_code_library_builder\\index.js:62"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 3,
+            "name": "I call register user api with already registered user.",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:127"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 300000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "I should get error message in response as \"An account already exists with this email. Please login.\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:137"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            },
+            "embeddings": [
+              {
+                "data": "{\"errors\":[{\"errorMessage\":\"An account already exists with this email. Please login.\",\"errorCode\":\"accountExist\",\"fieldName\":\"email\"}]}",
+                "mime_type": "application/json"
+              }
+            ]
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "errorcode in response should be \"accountExist\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:144"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "Account",
+    "line": 1,
+    "id": "account",
+    "tags": [],
+    "uri": "features\\Feature\\AccountFeature\\Address.feature",
+    "elements": [
+      {
+        "id": "account;add-address-in-account",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Add address in account",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Backup\\cucumber-js-rest-api\\node_modules\\cucumber\\lib\\support_code_library_builder\\index.js:62"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 3,
+            "name": "I call add addess to account api",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:60"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 893000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "response should received as success",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:71"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            },
+            "embeddings": [
+              {
+                "data": "{\"response\":\"success\",\"newAddressId\":\"cti2649032156\"}",
+                "mime_type": "application/json"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword": "Feature",
+    "name": "CART",
+    "line": 1,
+    "id": "cart",
+    "tags": [],
+    "uri": "features\\Feature\\CartFeature\\Cart.feature",
+    "elements": [
+      {
+        "id": "cart;basic-add-to-cart",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Basic ADD TO CART",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Backup\\cucumber-js-rest-api\\node_modules\\cucumber\\lib\\support_code_library_builder\\index.js:62"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 3,
+            "name": "I call add to cart api with skuID = \"0N-1026\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 480000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "product should be added to cart with amount= \"33.99\" and quantity \"1\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:44"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            },
+            "embeddings": [
+              {
+                "data": "{\"estimatedCartSummaryPrice\":33.99,\"deltaFillPercentage\":100,\"shippingMessage\":\"This order qualifies for Free Shipping*\",\"pickUpInStoreDelivery\":\"/dist/pickupinstore.html\",\"orderType\":\"DTC\",\"oneTimeDeliveryDetailsWithoutFreeShipping\":\"Enroll for 10% off with Auto Delivery\",\"orderDetailsShippingMessage\":\"This order ships free!*\",\"adpFreeShippingToggle\":false,\"miniCartProductImageSuffix\":\"_set?$MINI_CART$\",\"commerceItems\":[{\"commerceId\":\"ci9855000036\",\"estimatedShippingMsg\":[\"within 48 hours\"],\"subCommerceItems\":[],\"savingsOnLineItemPrice\":3,\"lineItemUnitDiscountPrice\":33.99,\"QuantityPriceDetails\":[\"1 @ $33.99\"],\"totalSubCommerceItems\":0,\"frequencyOnCommerceItem\":0,\"hacPoints\":34,\"autoDeliveryOnCommerceItem\":false,\"isVentiProduct\":false,\"priceInfo\":33.99,\"promotionDescriptions\":[],\"skuId\":\"0N-1026\",\"oneTimeDeliveryHAPoints\":0,\"quantity\":1,\"attributes\":{\"scene7Image\":\"https://s7.vitaminshoppe.com/is/image/VitaminShoppe/1924679_set?$CRT_SKU$\",\"longDisplayName\":\"Lean 1 Fat Burning Meal Replacement - Vanilla (15 Servings)\",\"defaultFrequency\":\"30\",\"frequency\":[\"30\",\"45\",\"60\"],\"avgOverallRating\":\"5.000000\",\"type\":\"sku\",\"sale\":\"1\",\"jdaSkuId\":\"1924679\",\"brandUrl\":\"/b/nutrition-53/N-98n\",\"product.repositoryId\":\"prod180307\",\"skuAutoDeliverable\":true,\"promoMessage\":\"ON SALE NOW!\",\"avgRatingDecimal\":\"4.800000\",\"brand\":\"Nutrition 53\",\"totalReviewCount\":\"14\",\"subscribeSaveEligible\":\"1\",\"productDetailPageUrl\":\"/p/nutrition-53-lean-1-vanilla-1-7-lb-powder/0n-1026\"},\"lineItemListPrice\":36.99,\"brandDisplayName\":\"Nutrition 53\",\"variantSkuDisplayName\":\" Fat Burning Meal Replacement - Vanilla (15 Servings)\",\"lineItemSalePrice\":33.99}],\"oneTimeDeliveryDetailsWithFreeShipping\":\"Enroll for 10% off + Free Shipping with Auto Delivery\",\"adpEnrolledData\":{\"subscribeSaveEligible\":false},\"miniCartProductImagePrefix\":\"https://s7.vitaminshoppe.com/is/image/VitaminShoppe/\",\"bopsEnabled\":true,\"order\":{\"shipping\":0,\"isEnrolledADP\":false,\"tax\":0,\"isTaxCalculated\":false,\"rawSubtotal\":33.99,\"totalCommerceItemCount\":1},\"newOrderDetailsShippingMessage\":\"This order ships free!*\",\"autoDelivery\":\"/dist/shiptohome.html\",\"isOrderEligiblePayWithPaypal\":false,\"healthyAwardsMessage\":\"34 Estimated Healthy Awards Points\",\"oneTimeDelivery\":\"/dist/shiptohome.html\",\"pricingAdjustments\":[]}",
+                "mime_type": "application/json"
+              }
+            ]
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "product should be added to cart with skuID = \"0N-1026\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          }
+        ]
+      },
+      {
+        "id": "cart;basic-add-to-cart",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Basic ADD TO CART",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Backup\\cucumber-js-rest-api\\node_modules\\cucumber\\lib\\support_code_library_builder\\index.js:62"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 3,
+            "name": "I call add to cart api with skuID = \"VTP0003\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 436000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 4,
+            "name": "product should be added to cart with amount= \"42.99\" and quantity \"2\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:44"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 2000000,
+              "error_message": "AssertionError\n    + expected - actual\n\n    -1\n    +2\n\n    at World.<anonymous> (D:\\Utilities_Prod\\Js Api Automation Framework - Backup\\cucumber-js-rest-api\\features\\step_definitions\\stepDefination.js:49:23)"
+            },
+            "embeddings": [
+              {
+                "data": "{\"estimatedCartSummaryPrice\":42.99,\"deltaFillPercentage\":100,\"shippingMessage\":\"This order qualifies for Free Shipping*\",\"pickUpInStoreDelivery\":\"/dist/pickupinstore.html\",\"orderType\":\"DTC\",\"oneTimeDeliveryDetailsWithoutFreeShipping\":\"Enroll for 10% off with Auto Delivery\",\"orderDetailsShippingMessage\":\"This order ships free!*\",\"adpFreeShippingToggle\":false,\"miniCartProductImageSuffix\":\"_set?$MINI_CART$\",\"commerceItems\":[{\"commerceId\":\"ci9855000037\",\"estimatedShippingMsg\":[\"within 48 hours\"],\"subCommerceItems\":[],\"savingsOnLineItemPrice\":0,\"lineItemUnitDiscountPrice\":42.99,\"QuantityPriceDetails\":[\"1 @ $42.99\"],\"totalSubCommerceItems\":0,\"frequencyOnCommerceItem\":0,\"hacPoints\":43,\"autoDeliveryOnCommerceItem\":false,\"isVentiProduct\":false,\"priceInfo\":42.99,\"promotionDescriptions\":[],\"skuId\":\"VTP0003\",\"oneTimeDeliveryHAPoints\":0,\"quantity\":1,\"attributes\":{\"scene7Image\":\"https://s7.vitaminshoppe.com/is/image/VitaminShoppe/2113256_set?$CRT_SKU$\",\"longDisplayName\":\"Collagen Peptides Powder - Unflavored (28 Servings)\",\"defaultFrequency\":\"30\",\"frequency\":[\"30\",\"60\",\"90\"],\"avgOverallRating\":\"4.500000\",\"type\":\"sku\",\"sale\":\"0\",\"jdaSkuId\":\"2113256\",\"brandUrl\":\"/b/vital-proteins/N-cp99bc\",\"product.repositoryId\":\"prod3672794\",\"skuAutoDeliverable\":true,\"avgRatingDecimal\":\"4.700000\",\"brand\":\"Vital Proteins\",\"totalReviewCount\":\"1931\",\"subscribeSaveEligible\":\"1\",\"productDetailPageUrl\":\"/p/collagen-peptides-20-oz-powder/vtp0003\"},\"lineItemListPrice\":42.99,\"brandDisplayName\":\"Vital Proteins\",\"variantSkuDisplayName\":\" Powder - Unflavored (28 Servings)\",\"lineItemSalePrice\":42.99}],\"oneTimeDeliveryDetailsWithFreeShipping\":\"Enroll for 10% off + Free Shipping with Auto Delivery\",\"adpEnrolledData\":{\"subscribeSaveEligible\":false},\"miniCartProductImagePrefix\":\"https://s7.vitaminshoppe.com/is/image/VitaminShoppe/\",\"bopsEnabled\":true,\"order\":{\"shipping\":0,\"isEnrolledADP\":false,\"tax\":0,\"isTaxCalculated\":false,\"rawSubtotal\":42.99,\"totalCommerceItemCount\":1},\"newOrderDetailsShippingMessage\":\"This order ships free!*\",\"autoDelivery\":\"/dist/shiptohome.html\",\"isOrderEligiblePayWithPaypal\":false,\"healthyAwardsMessage\":\"43 Estimated Healthy Awards Points\",\"oneTimeDelivery\":\"/dist/shiptohome.html\",\"pricingAdjustments\":[]}",
+                "mime_type": "application/json"
+              }
+            ]
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "product should be added to cart with skuID = \"VTP0003\"",
+            "match": {
+              "location": "features\\step_definitions\\stepDefination.js:53"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

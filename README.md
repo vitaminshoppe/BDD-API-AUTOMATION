@@ -4,7 +4,7 @@ This API Automation Framework was built in BDD approach using Cucumber.js.
 
 Cucumber
 ---------
-Cucumber.js is JavaScript & Node.js implementation of Behaviour Driven Development test framework - Cucumber. Cucumber.js is using Gherkin language for describing the test scenarios in BDD manner.
+Cucumber.js is JavaScript & Node.js implementation of Behaviour Driven Development test framework. Cucumber.js is using Gherkin language for describing the test scenarios in BDD manner.
 
 Request
 ---------

@@ -1,0 +1,11 @@
+{
+  "updateSpecName": false,
+  "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/login",
+  "isThirdParty": false,
+  "method": "post",
+  "requestBody": {
+    "email": "autoapi1578045208953@yopmail.com",
+    "password": "password",
+    "source": "CA"
+  }
+}

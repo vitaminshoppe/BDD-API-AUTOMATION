@@ -1,0 +1,43 @@
+{
+  "name": "cucumber-js-rest-api",
+  "version": "0.0.1",
+  "author": "Pratik/Vishal",
+  "repository": "",
+  "description": "BDD API Automation Frame work",
+  "main": "index.js",
+  "contributors": [],
+  "scripts": {
+    "test": ".\\node_modules\\.bin\\cucumber-js features/Feature/AccountFeature/CreateUser.feature features/Feature/AccountFeature/RegisterDuplicateUser.feature features/Feature/AccountFeature/Address.feature features/Feature/CartFeature -f json:report\\cucumber_report.json  & node index.js"
+  },
+  "keywords": [
+    "cucumber.js",
+    "REST",
+    "API",
+    "http",
+    "acceptance test"
+  ],
+  "globalDependencies": {
+    "cucumber": "^6.0.5",
+    "grunt-cli": "latest"
+  },
+  "devDependencies": {
+    "JSONPath": "~0.9.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.1.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-cucumber": "~0.2.3",
+    "grunt-cucumberjs": "^2.0.2",
+    "log4js": "2.5.3",
+    "mocha": "^6.2.2",
+    "oracledb": "^2.3.0",
+    "request": "~2.27.0"
+  },
+  "engines": {
+    "node": "~0.8.21"
+  },
+  "dependencies": {}
+}

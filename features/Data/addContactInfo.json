@@ -1,0 +1,20 @@
+{
+    "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/addContactInfo",
+    "method": "post",
+    "isThirdParty": false,
+    "requestBody": {
+        "firstName": "Raj",
+        "lastName": "Kumar",
+        "address1": "1005 Passaic Ave",
+        "address2": "",
+        "city": "Clifton",
+        "state": "NJ",
+        "country": "US",
+        "postalCode": "07012",
+        "phoneNumber": "9943951815",
+        "mobilePhoneNumber": "9943951814",
+        "addressType": "ShippingAddress",
+        "useShippingAddressAsDefault": true,
+        "saveAsBillingAddress": false
+    }
+}
