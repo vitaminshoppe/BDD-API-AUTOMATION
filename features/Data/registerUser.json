@@ -1,7 +1,6 @@
 {
     "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/register",
     "method": "post",
-    "updateRequestBody": true,
     "updateRequestBodyFields": [
         "email",
         "firstName",

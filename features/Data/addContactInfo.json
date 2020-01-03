@@ -1,7 +1,6 @@
 {
     "url": "/rest/model/vitaminshoppe/ca/actor/VSIProfileActor/addContactInfo",
     "method": "post",
-    "isThirdParty": false,
     "requestBody": {
         "firstName": "Raj",
         "lastName": "Kumar",

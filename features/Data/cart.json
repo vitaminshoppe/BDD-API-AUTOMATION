@@ -1,7 +1,6 @@
 {
     "url": "/rest/model/vitaminshoppe/ca/actor/CartModifierActor/addItemToOrder",
     "method": "post",
-    "isThirdParty": false,
     "updateRequestBodyFields": [
         "catalogRefIds"
     ],
