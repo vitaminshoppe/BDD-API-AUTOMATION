@@ -13,13 +13,13 @@ function RestClient(){
 			});	
 		};
 
-	this.post= function(testSpec,requestBody,cookie123) {
+	this.post= function(testSpec,requestBody,cookie123,responseLoggerObject) {
 			return apiService._vsiApiPOST({
 				url: apiService.getCompleteURL(testSpec.url),
 		    	body: requestBody,
 		    	cookie: cookie123,
-		    	headers: testSpec.headers
-			});
+				headers: testSpec.headers,
+			},responseLoggerObject);
 		};
 
 	this.resetClient = function(options) {
@@ -27,9 +27,9 @@ function RestClient(){
 		this.token= '';
 	}
 
-	this.authenticate= function(config){
+	this.authenticate= function(config,responseLoggerObject){
 		let self = this;
-			return authService.authenticate(config)
+			return authService.authenticate(config,responseLoggerObject)
 			.then((resp)=>{
 				return self.cookie = resp;
 			});

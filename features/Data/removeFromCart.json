@@ -1,0 +1,11 @@
+{
+    "url": "/rest/model/vitaminshoppe/ca/actor/CartModifierActor/removeItemFromOrder",
+    "method": "post",
+    "updateRequestBodyFields": [
+        "removalCommerceIds"
+    ],
+    "requestBody": {
+        "removalCommerceIds" : "{random}",
+        "source" : "CA"
+    }
+}

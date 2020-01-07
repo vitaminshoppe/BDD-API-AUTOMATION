@@ -17,7 +17,7 @@ function replacer(key, value) {
     return value;
 }
 
-var authenticate = function (authConfig) {
+var authenticate = function (authConfig,responseLoggerObject) {
 
     if (authConfig.method === 'post') {
         logger.info("Authenticating with below details:", JSON.stringify(authConfig.requestBody, replacer, 2))
@@ -25,7 +25,7 @@ var authenticate = function (authConfig) {
             url: apiService.getCompleteURL(authConfig.url),
             body: authConfig.requestBody,
             cookie: cookie
-        }).then((response) => {
+        },responseLoggerObject).then((response) => {
             if (response)
                 cookie = getCookie(cookie, response.headers['set-cookie']);
             return cookie;

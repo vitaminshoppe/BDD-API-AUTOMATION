@@ -28,5 +28,68 @@
             "isEnabled": true,
             "query": "select * from dps_user where  LOGIN = 'autoapi{random}@yopmail.com'"
         }
-    }
+    },
+    "schema":{
+            "type": "object",
+            "properties": {
+              "registerResponse": {
+                "type": "object",
+                "properties": {
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "profileImagePath": {
+                    "type": "string"
+                  },
+                  "profileId": {
+                    "type": "string"
+                  },
+                  "thread1": {
+                    "type": "null"
+                  },
+                  "customerNumber": {
+                    "type": "string"
+                  },
+                  "defaultStore": {
+                    "type": "string"
+                  },
+                  "emailOptInFlag": {
+                    "type": "string"
+                  },
+                  "zipCode": {
+                    "type": "string"
+                  },
+                  "defaultPaymentAvailable": {
+                    "type": "boolean"
+                  },
+                  "thread2": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "STATUS": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "lastName",
+                  "profileImagePath",
+                  "profileId",
+                  "thread1",
+                  "customerNumber",
+                  "defaultStore",
+                  "emailOptInFlag",
+                  "zipCode",
+                  "defaultPaymentAvailable",
+                  "thread2",
+                  "firstName",
+                  "STATUS"
+                ]
+              }
+            },
+            "required": [
+              "registerResponse"
+            ]
+          }
 }

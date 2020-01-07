@@ -1,0 +1,337 @@
+{
+    "url": "/rest/model/vitaminshoppe/ca/actor/CartModifierActor/addItemToOrder",
+    "method": "post",
+    "updateRequestBodyFields": [
+        "catalogRefIds"
+    ],
+    "requestBody": {
+        "quantity": "1",
+        "catalogRefIds": "{random}",
+        "autoDeliveryFreq": "28",
+        "deliveryMethod": "DTC",
+        "autoDelivery": false,
+        "source": "CA",
+        "page": "cart",
+        "validateShippingMethods": true
+    },
+    "schema":{
+        "type": "object",
+        "properties": {
+          "estimatedCartSummaryPrice": {
+            "type": "number"
+          },
+          "deltaFillPercentage": {
+            "type": "integer"
+          },
+          "shippingMessage": {
+            "type": "string"
+          },
+          "pickUpInStoreDelivery": {
+            "type": "string"
+          },
+          "orderType": {
+            "type": "string"
+          },
+          "oneTimeDeliveryDetailsWithoutFreeShipping": {
+            "type": "string"
+          },
+          "orderDetailsShippingMessage": {
+            "type": "string"
+          },
+          "adpFreeShippingToggle": {
+            "type": "boolean"
+          },
+          "miniCartProductImageSuffix": {
+            "type": "string"
+          },
+          "commerceItems": {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "properties": {
+                  "commerceId": {
+                    "type": "string"
+                  },
+                  "estimatedShippingMsg": {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "subCommerceItems": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "savingsOnLineItemPrice": {
+                    "type": "integer"
+                  },
+                  "lineItemUnitDiscountPrice": {
+                    "type": "number"
+                  },
+                  "QuantityPriceDetails": {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "totalSubCommerceItems": {
+                    "type": "integer"
+                  },
+                  "frequencyOnCommerceItem": {
+                    "type": "integer"
+                  },
+                  "hacPoints": {
+                    "type": "integer"
+                  },
+                  "autoDeliveryOnCommerceItem": {
+                    "type": "boolean"
+                  },
+                  "isVentiProduct": {
+                    "type": "boolean"
+                  },
+                  "priceInfo": {
+                    "type": "number"
+                  },
+                  "promotionDescriptions": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "skuId": {
+                    "type": "string"
+                  },
+                  "oneTimeDeliveryHAPoints": {
+                    "type": "integer"
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  },
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "scene7Image": {
+                        "type": "string"
+                      },
+                      "longDisplayName": {
+                        "type": "string"
+                      },
+                      "defaultFrequency": {
+                        "type": "string"
+                      },
+                      "frequency": {
+                        "type": "array",
+                        "items": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "avgOverallRating": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "sale": {
+                        "type": "string"
+                      },
+                      "jdaSkuId": {
+                        "type": "string"
+                      },
+                      "brandUrl": {
+                        "type": "string"
+                      },
+                      "product.repositoryId": {
+                        "type": "string"
+                      },
+                      "skuAutoDeliverable": {
+                        "type": "boolean"
+                      },
+                      "promoMessage": {
+                        "type": "string"
+                      },
+                      "avgRatingDecimal": {
+                        "type": "string"
+                      },
+                      "brand": {
+                        "type": "string"
+                      },
+                      "totalReviewCount": {
+                        "type": "string"
+                      },
+                      "subscribeSaveEligible": {
+                        "type": "string"
+                      },
+                      "productDetailPageUrl": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "scene7Image",
+                      "longDisplayName",
+                      "defaultFrequency",
+                      "frequency",
+                      "avgOverallRating",
+                      "type",
+                      "sale",
+                      "jdaSkuId",
+                      "brandUrl",
+                      "product.repositoryId",
+                      "skuAutoDeliverable",
+                      "promoMessage",
+                      "avgRatingDecimal",
+                      "brand",
+                      "totalReviewCount",
+                      "subscribeSaveEligible",
+                      "productDetailPageUrl"
+                    ]
+                  },
+                  "lineItemListPrice": {
+                    "type": "number"
+                  },
+                  "brandDisplayName": {
+                    "type": "string"
+                  },
+                  "variantSkuDisplayName": {
+                    "type": "string"
+                  },
+                  "estimatedAdpPriceMessage": {
+                    "type": "string"
+                  },
+                  "lineItemSalePrice": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "commerceId",
+                  "estimatedShippingMsg",
+                  "subCommerceItems",
+                  "savingsOnLineItemPrice",
+                  "lineItemUnitDiscountPrice",
+                  "QuantityPriceDetails",
+                  "totalSubCommerceItems",
+                  "frequencyOnCommerceItem",
+                  "hacPoints",
+                  "autoDeliveryOnCommerceItem",
+                  "isVentiProduct",
+                  "priceInfo",
+                  "promotionDescriptions",
+                  "skuId",
+                  "oneTimeDeliveryHAPoints",
+                  "quantity",
+                  "attributes",
+                  "lineItemListPrice",
+                  "brandDisplayName",
+                  "variantSkuDisplayName",
+                  "estimatedAdpPriceMessage",
+                  "lineItemSalePrice"
+                ]
+              }
+            ]
+          },
+          "oneTimeDeliveryDetailsWithFreeShipping": {
+            "type": "string"
+          },
+          "adpEnrolledData": {
+            "type": "object",
+            "properties": {
+              "subscribeSaveEligible": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "subscribeSaveEligible"
+            ]
+          },
+          "miniCartProductImagePrefix": {
+            "type": "string"
+          },
+          "bopsEnabled": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "object",
+            "properties": {
+              "shipping": {
+                "type": "integer"
+              },
+              "isEnrolledADP": {
+                "type": "boolean"
+              },
+              "tax": {
+                "type": "integer"
+              },
+              "isTaxCalculated": {
+                "type": "boolean"
+              },
+              "rawSubtotal": {
+                "type": "number"
+              },
+              "totalCommerceItemCount": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "shipping",
+              "isEnrolledADP",
+              "tax",
+              "isTaxCalculated",
+              "rawSubtotal",
+              "totalCommerceItemCount"
+            ]
+          },
+          "newOrderDetailsShippingMessage": {
+            "type": "string"
+          },
+          "autoDelivery": {
+            "type": "string"
+          },
+          "isOrderEligiblePayWithPaypal": {
+            "type": "boolean"
+          },
+          "healthyAwardsMessage": {
+            "type": "string"
+          },
+          "oneTimeDelivery": {
+            "type": "string"
+          },
+          "pricingAdjustments": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "required": [
+          "estimatedCartSummaryPrice",
+          "deltaFillPercentage",
+          "shippingMessage",
+          "pickUpInStoreDelivery",
+          "orderType",
+          "oneTimeDeliveryDetailsWithoutFreeShipping",
+          "orderDetailsShippingMessage",
+          "adpFreeShippingToggle",
+          "miniCartProductImageSuffix",
+          "commerceItems",
+          "oneTimeDeliveryDetailsWithFreeShipping",
+          "adpEnrolledData",
+          "miniCartProductImagePrefix",
+          "bopsEnabled",
+          "order",
+          "newOrderDetailsShippingMessage",
+          "autoDelivery",
+          "isOrderEligiblePayWithPaypal",
+          "healthyAwardsMessage",
+          "oneTimeDelivery",
+          "pricingAdjustments"
+        ]
+      }
+}

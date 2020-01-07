@@ -2,7 +2,8 @@
 const chai = require('chai');
 var expect = chai.expect;
 global.assert = require('chai').assert;
-var Data = require('../Data/cart.json')
+var Data = require('../Data/addToCart.json')
+var removeCartData = require('../Data/removeFromCart.json')
 var userRegisterData = require('../Data/registerUser.json')
 var addressData = require('../Data/addContactInfo.json')
 var dbService = require('../service/database.service');
@@ -20,14 +21,19 @@ var { When } = require('cucumber');
 var { Then } = require('cucumber');
 var { Before } = require('cucumber');
 var { setDefaultTimeout } = require('cucumber');
+const Ajv = require('ajv');
+const ajv = new Ajv({
+  allErrors: true,
+});
 var Logger = require('../utility/logger');
 global.incrementedCount = (new Date()).getTime();
 global.logger = (new Logger(config.loggerConfig)).getLogger();
 global.app = {};
 global.app.random = global.incrementedCount;
+var loginCookie = {};
 
 Before(function () {
-  setDefaultTimeout(60 * 1000);
+  setDefaultTimeout(10 * 1000);
 });
 
 When(/^I call add to cart api with skuID = "([^"]*)"$/, function (arg1, callback) {
@@ -36,31 +42,31 @@ When(/^I call add to cart api with skuID = "([^"]*)"$/, function (arg1, callback
   Data.updateRequestBodyFields.forEach(function (element, index) {
     k = jsonUtility.setNested(Data.requestBody, element, ".", arg1);
   });
-  makeRequestCall(Data, k).then(function (response) {
+  makeRequestCall(Data, k, loginCookie, this).then(function (response) {
+    global.commerceId = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[0].commerceId", ".");
     callback();
   })
 });
 
-Then('product should be added to cart with amount= {string} and quantity {string}', function (arg1, arg2, callback) {
-  this.attach(JSON.stringify(global.lastApiResponse.body),'application/json')
-  let amount = jsonUtility.getNested(global.lastApiResponse.body, "estimatedCartSummaryPrice", ".");
-  let quantity = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[0].quantity", ".");
+Then('product {string} should be added to cart with amount= {string} and quantity {string}', function (productNo, arg1, arg2, callback) {
+  let amount = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[" + productNo + "].priceInfo", ".");
+  let quantity = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[" + productNo + "].quantity", ".");
   expect(amount).to.equal(parseFloat(arg1))
   expect(quantity).to.equal(parseFloat(arg2))
   callback();
 });
 
-Then(/^product should be added to cart with skuID = "(.*)"$/, function (p1, callback) {
-  ;
-  let skuID = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[0].skuId", ".");
+Then('product {string} should be added to cart with skuID = {string}', function (productNo, p1, callback) {
+  let skuID = jsonUtility.getNested(global.lastApiResponse.body, "commerceItems[" + productNo + "].skuId", ".");
   expect(skuID).to.equal(p1)
   callback();
 });
 
 When(/^I call add addess to account api$/, function (callback) {
   let authFile = require(path.resolve(config.testDirectoryPath + '/reg-auth.json'));
-  restClient.authenticate(authFile).then((ack) => {
-    makeRequestCall(addressData, addressData.requestBody, ack).then(function (response) {
+  restClient.authenticate(authFile, this).then((ack) => {
+    loginCookie = ack;
+    makeRequestCall(addressData, addressData.requestBody, ack, this).then(function (response) {
       callback();
     })
   });
@@ -71,7 +77,6 @@ When(/^I call add addess to account api$/, function (callback) {
 Then(/^response should received as success$/, function (callback) {
   expect(jsonUtility.getNested(global.lastApiResponse.body, "response", ".")).to.equal("success")
   createRegAuthFile()
-  this.attach(JSON.stringify(global.lastApiResponse.body),'application/json')
   callback();
 });
 
@@ -82,14 +87,16 @@ When(/^I call register user api with firstname as "([^"]*)" and lastName as "([^
   requestBodyModified = jsonUtility.setNested(requestBodyModified, userRegisterData.updateRequestBodyFields[1], ".", arg1);
   requestBodyModified = jsonUtility.setNested(requestBodyModified, userRegisterData.updateRequestBodyFields[2], ".", arg2);
   logger.info("Registering user ", requestBodyModified, global.app)
-  makeRequestCall(userRegisterData, requestBodyModified).then(function (response) {
+  makeRequestCall(userRegisterData, requestBodyModified, '', this).then(function (response) {
     writeUsersRegistrationLogFile(jsonUtility.getNested(requestBodyModified, "email", "."), jsonUtility.getNested(requestBodyModified, "password", "."), jsonUtility.getNested(response.body.registerResponse, "profileId", "."))
     callback();
   })
-
+});
+Then('JSON schema should match the expected schema.', function (callback) {
+  validateSchema(userRegisterData.schema, global.lastApiResponse.body, this)
+  callback();
 });
 Then(/^firstname and lastName in response should be "([^"]*)" and "([^"]*)"$/, function (arg1, arg2, callback) {
-  this.attach(JSON.stringify(global.lastApiResponse.body),'application/json')
   let firstName = jsonUtility.getNested(global.lastApiResponse.body.registerResponse, "firstName", ".");
   let lastName = jsonUtility.getNested(global.lastApiResponse.body.registerResponse, "lastName", ".");
   expect(firstName).to.equal(arg1)
@@ -112,7 +119,6 @@ Then(/^firstname and lastName in database should match with response$/, function
   dbService.fetchData(db)
     .then((dbResp) => {
       logger.info("db response is ", JSON.stringify(dbResp, null, 2))
-      this.attach(JSON.stringify(dbResp),'application/json')
       let firstNameDb = jsonUtility.getNested(dbResp[0], "FIRST_NAME", ".");
       let lastNameDb = jsonUtility.getNested(dbResp[0], "LAST_NAME", ".");
       let firstNameResponse = jsonUtility.getNested(global.lastApiResponse.body.registerResponse, "firstName", ".");
@@ -129,13 +135,12 @@ When('I call register user api with already registered user.', function (callbac
   let emailField = jsonUtility.getNested(userRegisterData.requestBody, userRegisterData.updateRequestBodyFields[0], ".");
   requestBodyModified = jsonUtility.setNested(userRegisterData.requestBody, userRegisterData.updateRequestBodyFields[0], ".", substitutor(emailField, global.app));
   logger.info("Registering user ", requestBodyModified, global.app)
-  makeRequestCall(userRegisterData, requestBodyModified).then(function (response) {
+  makeRequestCall(userRegisterData, requestBodyModified, '', this).then(function (response) {
     callback();
   })
 });
 
 Then('I should get error message in response as {string}', function (expectedMessage, callback) {
-  this.attach(JSON.stringify(global.lastApiResponse.body),'application/json')
   let errorMessage = jsonUtility.getNested(global.lastApiResponse.body, "errors[0].errorMessage", ".");
   expect(errorMessage).to.equal(expectedMessage)
   callback();
@@ -147,9 +152,26 @@ Then('errorcode in response should be {string}', function (expectedAccountCode, 
   callback();
 });
 
-function makeRequestCall(testSpec, requestBody, cookie = '') {
+When('I call remove from cart api with valid commerceId', function (callback) {
+  let requestBodyModified
+  requestBodyModified = jsonUtility.setNested(removeCartData.requestBody, removeCartData.updateRequestBodyFields[0], ".", global.commerceId);
+  makeRequestCall(removeCartData, requestBodyModified, loginCookie, this).then(function (response) {
+    callback();
+  })
+});
+Then('orderType in reponse should be {string}', function (expectedOrderType) {
+  let orderType = jsonUtility.getNested(global.lastApiResponse.body, "orderType", ".");
+  expect(orderType).to.equal(expectedOrderType)
+});
+
+Then('JSON schema for cart repponse should match the expected schema.', function (callback) {
+  validateSchema(Data.schema, global.lastApiResponse.body, this)
+  callback();
+});
+
+function makeRequestCall(testSpec, requestBody, cookie = '', responseLoggerObject) {
   try {
-    return restClient[testSpec.method.toLowerCase()](testSpec, requestBody, cookie);
+    return restClient[testSpec.method.toLowerCase()](testSpec, requestBody, cookie, responseLoggerObject);
   } catch (e) {
     logger.error(e);
   }
@@ -195,4 +217,19 @@ function writeUsersRegistrationLogFile(newEmail, password, profileId) {
 function writeContentToFile(filePath, content) {
   fs.writeFileSync(path.resolve(filePath), content);
   return;
+}
+function validateSchema(schemaObject, responseObject, instance) {
+  let validate = ajv.compile(schemaObject);
+  let valid = validate(responseObject);
+  if (validate.errors) {
+    logger.info("JSON Schema Errors are")
+    logger.error(validate.errors);
+    instance.attach(JSON.stringify(validate.errors))
+    expect(validate.errors.length).to.equal(0);
+  }
+  else {
+    logger.info("JSON Schema Validated successfully.")
+  }
+
+
 }

@@ -39,5 +39,7 @@
   "engines": {
     "node": "~0.8.21"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ajv": "^6.10.2"
+  }
 }

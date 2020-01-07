@@ -10,7 +10,7 @@ var env = require('../support/env')
  * @param  {Number} timeout [Make the call only after specified time]
  * @return {Promise}         [the response of the API]
  */
-var _vsiApiGET = function (options, timeout = 0) {
+var _vsiApiGET = function (options, responseLoggerObject, timeout = 0) {
   return new Promise(function (resolve, reject) {
     setTimeout(function () {
       var getOption = {
@@ -24,8 +24,15 @@ var _vsiApiGET = function (options, timeout = 0) {
         getOption.headers = _.merge(getOption.headers, options.headers);
       }
       request.get(getOption, function (apiErr, apiResp, apiBody) {
-        if (apiErr) reject(apiErr);
-        resolve(apiResp);
+        if (apiErr) {
+          reject(apiErr);
+        }
+        else {
+          global.lastApiResponse = apiResp
+          logger.info("Api Response for url " + postOption.url + "\r\n" + JSON.stringify(global.lastApiResponse.body))
+          responseLoggerObject.attach(JSON.stringify(global.lastApiResponse.body), 'application/json')
+          resolve(apiResp);
+        }
       });
     }, timeout);
   });
@@ -39,7 +46,7 @@ var _vsiApiGET = function (options, timeout = 0) {
  * @param  {Number} timeout [Make the call only after specified time]
  * @return {Promise}         [the response of the API]
  */
-var _vsiApiPOST = function (options, timeout = 0) {
+var _vsiApiPOST = function (options, responseLoggerObject, timeout = 0) {
   logger.info("API Url", options.url);
   logger.info("Request body", options.body);
   let postOption = {
@@ -47,7 +54,7 @@ var _vsiApiPOST = function (options, timeout = 0) {
     headers: {
       'Cookie': options.cookie
     },
-    body:options.body,
+    body: options.body,
     json: true
   };
   if (options.headers) {
@@ -60,7 +67,8 @@ var _vsiApiPOST = function (options, timeout = 0) {
           reject(apiErr);
         } else {
           global.lastApiResponse = apiResp
-          logger.info("Api Response for url "+postOption.url+ "\r\n" +JSON.stringify(global.lastApiResponse.body))
+          logger.info("Api Response for url " + postOption.url + "\r\n" + JSON.stringify(global.lastApiResponse.body))
+          responseLoggerObject.attach(JSON.stringify(global.lastApiResponse.body), 'application/json')
           resolve(apiResp);
         }
       });
@@ -75,7 +83,7 @@ var _vsiApiPOST = function (options, timeout = 0) {
  * @return {String} [URL]
  */
 function getCompleteURL(urlObj) {
-  return url.resolve(env.BASE_URL,urlObj );
+  return url.resolve(env.BASE_URL, urlObj);
 }
 
 
