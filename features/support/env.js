@@ -1,1 +1,1 @@
-exports.BASE_URL = "https://qa1.vitaminshoppe.com"
+exports.BASE_URL = process.env.npm_package_config_BASE_URL

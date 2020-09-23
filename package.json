@@ -7,7 +7,7 @@
   "main": "index.js",
   "contributors": [],
   "scripts": {
-    "test": ".\\node_modules\\.bin\\cucumber-js features/Feature/AccountFeature/CreateUser.feature features/Feature/AccountFeature/RegisterDuplicateUser.feature features/Feature/AccountFeature/Address.feature features/Feature/CartFeature -f json:report\\cucumber_report.json  & node index.js"
+    "test": "node features/support/env.js & .\\node_modules\\.bin\\cucumber-js features/Feature/AccountFeature/CreateUser.feature features/Feature/AccountFeature/RegisterDuplicateUser.feature features/Feature/AccountFeature/Address.feature features/Feature/CartFeature -f json:report\\cucumber_report.json  & node index.js"
   },
   "keywords": [
     "cucumber.js",
@@ -33,7 +33,7 @@
     "grunt-cucumberjs": "^2.0.2",
     "log4js": "2.5.3",
     "mocha": "^6.2.2",
-    "oracledb": "^2.3.0",
+    "oracledb": "^5.0.0",
     "request": "~2.27.0"
   },
   "engines": {
@@ -41,5 +41,8 @@
   },
   "dependencies": {
     "ajv": "^6.10.2"
+  },
+  "config": {
+    "BASE_URL": "https://qa1.vitaminshoppe.com"
   }
 }
