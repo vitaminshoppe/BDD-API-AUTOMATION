@@ -34,7 +34,7 @@
     "log4js": "2.5.3",
     "mocha": "^6.2.2",
     "oracledb": "^5.0.0",
-    "request": "~2.27.0"
+    "request": "~2.88.2"
   },
   "engines": {
     "node": "~0.8.21"
